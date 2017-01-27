@@ -1,20 +1,40 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import store from './store';
+
+const rootNode = document.body.appendChild(document.createElement("div"));
+const state = createStore(store);
 
 class Main extends React.Component {
+  onClickIncrement() {
+    state.dispatch({type: "INCREMENT"});
+  }
+
+  onClickDecrement() {
+    state.dispatch({type: "DECREMENT"});
+  }
+
   render() {
-    return <div>Hello World</div>;
+    return <div>
+      <div>Current state: { this.props.state }</div>
+      <button onClick={ this.onClickIncrement.bind(this) }>
+        Increment
+      </button>
+      <button onClick={ this.onClickDecrement.bind(this) }>
+        Decrement
+      </button>
+    </div>;
   }
 }
 
 function render() {
   ReactDOM.render(
-    <Main />,
-    root);
+    <Main state={ state.getState() }/>,
+    rootNode);
 }
 
-const root = document.createElement("div");
-document.body.appendChild(root);
-
 render();
+
+state.subscribe(render);
