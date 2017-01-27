@@ -27,12 +27,12 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const MainComponent = connect(mapStateToProps, mapDispatchToProps)(Main);
+const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
 
 function render() {
   ReactDOM.render(
     <Provider store={ state }>
-      <MainComponent />
+      <MainContainer />
     </Provider>,
     rootNode);
 }
