@@ -1,37 +1,39 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect, Provider } from 'react-redux';
 import { createStore } from 'redux';
 import store from './store';
+import { Main } from './components';
+import { increment, decrement } from './actions';
 
 const rootNode = document.body.appendChild(document.createElement("div"));
 const state = createStore(store);
 
-class Main extends React.Component {
-  onClickIncrement() {
-    state.dispatch({type: "INCREMENT"});
-  }
-
-  onClickDecrement() {
-    state.dispatch({type: "DECREMENT"});
-  }
-
-  render() {
-    return <div>
-      <div>Current state: { this.props.state }</div>
-      <button onClick={ this.onClickIncrement.bind(this) }>
-        Increment
-      </button>
-      <button onClick={ this.onClickDecrement.bind(this) }>
-        Decrement
-      </button>
-    </div>;
-  }
+function mapStateToProps(state) {
+  return {
+    value: state
+  };
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onClickIncrement: () => {
+      dispatch(increment)
+    },
+    onClickDecrement: () => {
+      dispatch(decrement)
+    }
+  };
+}
+
+const MainComponent = connect(mapStateToProps, mapDispatchToProps)(Main);
 
 function render() {
   ReactDOM.render(
-    <Main state={ state.getState() }/>,
+    <Provider store={ state }>
+      <MainComponent />
+    </Provider>,
     rootNode);
 }
 
