@@ -2,7 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
-import { createStore } from 'redux';
 import store from './store';
 import { Main } from './components';
 import { increment, decrement } from './actions';
@@ -27,7 +26,7 @@ function mapDispatchToProps(dispatch) {
 const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
 
 ReactDOM.render(
-  <Provider store={ createStore(store) }>
+  <Provider store={ store }>
     <MainContainer />
   </Provider>,
   document.body.appendChild(document.createElement("div")));

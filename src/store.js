@@ -1,7 +1,9 @@
 
+import { createStore } from 'redux';
+
 import { increment, decrement } from './actions';
 
-export default function counter(state = 0, action) {
+function counter(state = 0, action) {
   if (action.type === increment.type) {
     return state + 1;
   } else if (action.type === decrement.type) {
@@ -10,3 +12,5 @@ export default function counter(state = 0, action) {
     return state;
   }
 }
+
+export default createStore(counter);
