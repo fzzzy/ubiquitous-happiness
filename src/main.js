@@ -8,7 +8,6 @@ import { Main } from './components';
 import { increment, decrement } from './actions';
 
 const rootNode = document.body.appendChild(document.createElement("div"));
-const state = createStore(store);
 
 function mapStateToProps(state) {
   return {
@@ -31,12 +30,10 @@ const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
 
 function render() {
   ReactDOM.render(
-    <Provider store={ state }>
+    <Provider store={ createStore(store) }>
       <MainContainer />
     </Provider>,
     rootNode);
 }
 
 render();
-
-state.subscribe(render);
