@@ -16,5 +16,7 @@ export class Main extends React.Component {
 }
 
 Main.propTypes = {
-  value: React.PropTypes.number
+  value: React.PropTypes.number,
+  onClickIncrement: React.PropTypes.function,
+  onClickDecrement: React.PropTypes.function
 }
