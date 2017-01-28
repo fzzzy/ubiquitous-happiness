@@ -2,9 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
+
 import store from './store';
-import { Main } from './components';
 import { increment, decrement } from './actions';
+import { Main } from './components';
 
 function mapStateToProps(state) {
   return {
