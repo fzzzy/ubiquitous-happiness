@@ -1,3 +1,4 @@
+// @flow
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -7,13 +8,13 @@ import store from './store';
 import { increment, decrement } from './actions';
 import { Main } from './components';
 
-function mapStateToProps(state) {
+function mapStateToProps(state: number): Object {
   return {
     value: state
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Function): Object {
   return {
     onClickIncrement: () => {
       dispatch(increment)
@@ -26,8 +27,10 @@ function mapDispatchToProps(dispatch) {
 
 const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
 
-ReactDOM.render(
-  <Provider store={ store }>
-    <MainContainer />
-  </Provider>,
-  document.body.appendChild(document.createElement("div")));
+if (document.body !== null) {
+  ReactDOM.render(
+    <Provider store={ store }>
+      <MainContainer />
+    </Provider>,
+    document.body.appendChild(document.createElement("div")));
+}

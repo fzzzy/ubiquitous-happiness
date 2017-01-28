@@ -1,4 +1,6 @@
 
+// @flow
+
 import React from 'react';
 
 export class Main extends React.Component {
@@ -17,6 +19,6 @@ export class Main extends React.Component {
 
 Main.propTypes = {
   value: React.PropTypes.number,
-  onClickIncrement: React.PropTypes.function,
-  onClickDecrement: React.PropTypes.function
+  onClickIncrement: React.PropTypes.func,
+  onClickDecrement: React.PropTypes.func
 }
