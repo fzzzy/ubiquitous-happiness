@@ -24,9 +24,3 @@ export class Main extends React.Component {
     </div>;
   }
 }
-
-Main.propTypes = {
-  value: React.PropTypes.number,
-  onClickIncrement: React.PropTypes.func,
-  onClickDecrement: React.PropTypes.func
-}
