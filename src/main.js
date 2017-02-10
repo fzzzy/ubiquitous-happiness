@@ -16,12 +16,8 @@ function mapStateToProps(state: number): Object {
 
 function mapDispatchToProps(dispatch: Function): Object {
   return {
-    onClickIncrement: () => {
-      dispatch(increment())
-    },
-    onClickDecrement: () => {
-      dispatch(decrement())
-    }
+    onClickIncrement: () => dispatch(increment()),
+    onClickDecrement: () => dispatch(decrement())
   };
 }
 
