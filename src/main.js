@@ -21,7 +21,9 @@ function mapDispatchToProps(dispatch: Function): Object {
   };
 }
 
-const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
+const MainContainer = connect(
+  mapStateToProps, mapDispatchToProps
+)(Main);
 
 if (document.body !== null) {
   ReactDOM.render(
