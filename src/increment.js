@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
 
-export type Action = {type: string};
+type Action = {type: string};
 
 const _increment: Action = Object.freeze({
   type: "INCREMENT"
@@ -15,11 +15,11 @@ const _decrement: Action = Object.freeze({
   type: "DECREMENT"
 });
 
-export function increment(): Action {
+function increment(): Action {
   return _increment;
 }
 
-export function decrement(): Action {
+function decrement(): Action {
   return _decrement;
 }
 
@@ -39,7 +39,7 @@ type Props = {
   onClickDecrement: Function
 };
 
-export class Main extends React.Component {
+class Main extends React.Component {
   props: Props;
 
   render() {
@@ -55,13 +55,13 @@ export class Main extends React.Component {
   }
 }
 
-export function mapStateToProps(state: number): Object {
+function mapStateToProps(state: number): Object {
   return {
     value: state
   };
 }
 
-export function mapDispatchToProps(dispatch: Function): Object {
+function mapDispatchToProps(dispatch: Function): Object {
   return {
     onClickIncrement: () => dispatch(increment()),
     onClickDecrement: () => dispatch(decrement())
@@ -72,15 +72,10 @@ const MainContainer = connect(
   mapStateToProps, mapDispatchToProps
 )(Main);
 
-export function inject(oldNode: any = null): Object {
-  let node = null;
-  if (oldNode) {
-    node = oldNode;
-  } else {
-    node = document.createElement("div");
-    if (document.body !== null) {
-      document.body.appendChild(node);
-    }
+function inject() {
+  const node = document.createElement("div");
+  if (document.body !== null) {
+    document.body.appendChild(node);
   }
 
   ReactDOM.render(
@@ -88,8 +83,6 @@ export function inject(oldNode: any = null): Object {
       <MainContainer />
     </Provider>,
     node);
-
-  return node;
 }
 
 inject();
