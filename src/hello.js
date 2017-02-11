@@ -83,8 +83,12 @@ const provider = <Provider store={ createStore(hello) }>
 export default provider;
 
 function inject(body: Object) {
-  const node = document.createElement("div");
-  body.appendChild(node);
+  let node = document.getElementById("react-root");
+  if (node === null) {
+    node = document.createElement("div");
+    node.id = "react-root";
+    body.appendChild(node);
+  }
   ReactDOM.render(provider, node);
 }
 

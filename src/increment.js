@@ -82,13 +82,16 @@ const provider = <Provider store={ createStore(counter) }>
 export default provider;
 
 function inject(body: Object) {
-
-  const node = document.createElement("div");
-  body.appendChild(node);
+  let node = document.getElementById("react-root");
+  if (node === null) {
+    node = document.createElement("div");
+    node.id = "react-root";
+    body.appendChild(node);
+  }
   ReactDOM.render(provider, node);
 }
 
-if (typeof document !== undefined) {
+if (typeof document !== "undefined") {
   if (document.body !== null) {
     inject(document.body);
   }
