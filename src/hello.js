@@ -1,9 +1,10 @@
 // @flow
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
+
+import inject from '../inject';
 
 type GreetAction = {type: string, name: string};
 
@@ -82,18 +83,4 @@ const provider = <Provider store={ createStore(hello) }>
 
 export default provider;
 
-function inject(body: Object) {
-  let node = document.getElementById("react-root");
-  if (node === null) {
-    node = document.createElement("div");
-    node.id = "react-root";
-    body.appendChild(node);
-  }
-  ReactDOM.render(provider, node);
-}
-
-if (typeof document !== "undefined") {
-  if (document.body !== null) {
-    inject(document.body);
-  }
-}
+inject(provider);
