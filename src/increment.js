@@ -75,17 +75,21 @@ const MainContainer = connect(
   mapStateToProps, mapDispatchToProps
 )(Main);
 
-function inject() {
-  const node = document.createElement("div");
-  if (document.body !== null) {
-    document.body.appendChild(node);
-  }
+const provider = <Provider store={ createStore(counter) }>
+  <MainContainer />
+</Provider>;
 
-  ReactDOM.render(
-    <Provider store={ createStore(counter) }>
-      <MainContainer />
-    </Provider>,
-    node);
+export default provider;
+
+function inject(body: Object) {
+
+  const node = document.createElement("div");
+  body.appendChild(node);
+  ReactDOM.render(provider, node);
 }
 
-inject();
+if (typeof document !== undefined) {
+  if (document.body !== null) {
+    inject(document.body);
+  }
+}

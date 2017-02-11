@@ -34,11 +34,6 @@ class Main extends React.Component {
   props: StateProps & DispatchProps;
   name: any;
 
-  constructor(props: StateProps & DispatchProps) {
-    super(props);
-    this.name = null;
-  }
-
   componentDidMount() {
     this.name.focus();
   }
@@ -46,21 +41,21 @@ class Main extends React.Component {
   submit(e: any) {
     e.preventDefault();
     this.props.onGreet(this.name.value);
-    this.name.blur();
   }
 
   render() {
     return <div>
       { this.props.value
           ? <div>Hello, { this.props.value }</div>
-          : <div>Enter your name</div> }
-
-      <form onSubmit={ this.submit.bind(this) }>
-        <input name="name" ref={ (ref) => { this.name = ref; } }/>
-        <button>
-          Greet
-        </button>
-      </form>
+          : <div>
+              Enter your name
+              <form onSubmit={ this.submit.bind(this) }>
+                <input name="name" ref={ (ref) => { this.name = ref; } }/>
+                <button>
+                  Greet
+                </button>
+              </form>
+            </div> }
     </div>;
   }
 }
@@ -81,17 +76,20 @@ const MainContainer = connect(
   mapStateToProps, mapDispatchToProps
 )(Main);
 
-function inject() {
-  const node = document.createElement("div");
-  if (document.body !== null) {
-    document.body.appendChild(node);
-  }
+const provider = <Provider store={ createStore(hello) }>
+  <MainContainer />
+</Provider>;
 
-  ReactDOM.render(
-    <Provider store={ createStore(hello) }>
-      <MainContainer />
-    </Provider>,
-    node);
+export default provider;
+
+function inject(body: Object) {
+  const node = document.createElement("div");
+  body.appendChild(node);
+  ReactDOM.render(provider, node);
 }
 
-inject();
+if (typeof document !== "undefined") {
+  if (document.body !== null) {
+    inject(document.body);
+  }
+}
