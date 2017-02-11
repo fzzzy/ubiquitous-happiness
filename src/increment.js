@@ -4,7 +4,7 @@ import React from 'react';
 import { createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
 
-import inject from '../inject';
+import inject from '../lib/inject';
 
 type Action = {type: string};
 

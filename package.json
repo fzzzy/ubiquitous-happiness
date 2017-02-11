@@ -9,7 +9,7 @@
     "url": "https://github.com/fzzzy/ubiquitous-happiness.git"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.dist.js && find dist -name '*.js' -exec node transform.js {} \\;",
+    "build": "webpack --output-library-target commonjs2 && find dist -name '*.js' -exec node lib/transform.js {} \\;",
     "webpack-dev-server": "webpack-dev-server --progress --colors --port 7777",
     "start": "if [ ! -d \"node_modules\" ]; then npm install; fi && npm run webpack-dev-server",
     "clean": "rm -rf node_modules dist",

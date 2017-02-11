@@ -4,6 +4,7 @@ module.exports = {
   entry: {
     "increment": "./src/increment.js",
     "hello": "./src/hello.js",
+    "grid": "./src/grid.js",
   },
   output: {
     filename: "[name].js",
@@ -12,7 +13,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /src\/.*\.js$/,
+        exclude: /node_modules/,
         use: [{
           loader: "babel-loader",
           options: {
