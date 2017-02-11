@@ -33,14 +33,17 @@ function counter(state: number = 0, action: Action) {
   }
 }
 
-type Props = {
+type StateProps = {
   value: number,
+};
+
+type DispatchProps = {
   onClickIncrement: Function,
   onClickDecrement: Function
 };
 
 class Main extends React.Component {
-  props: Props;
+  props: StateProps & DispatchProps;
 
   render() {
     return <div>
@@ -55,13 +58,13 @@ class Main extends React.Component {
   }
 }
 
-function mapStateToProps(state: number): Object {
+function mapStateToProps(state: number): StateProps {
   return {
     value: state
   };
 }
 
-function mapDispatchToProps(dispatch: Function): Object {
+function mapDispatchToProps(dispatch: Function): DispatchProps {
   return {
     onClickIncrement: () => dispatch(increment()),
     onClickDecrement: () => dispatch(decrement())
