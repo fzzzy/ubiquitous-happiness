@@ -6,8 +6,11 @@ import { connect, Provider } from 'react-redux';
 
 import inject from '../lib/inject';
 
-type FlipTileAction = {
-  type: string,
+type Action = {
+  type: string
+};
+
+type FlipTileAction = Action & {
   x: number,
   y: number
 };
