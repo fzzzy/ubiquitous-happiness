@@ -2,7 +2,7 @@
 module.exports = {
   context: __dirname,
   entry: {
-    "main": "./src/main.js"
+    "increment": "./src/increment.js"
   },
   output: {
     filename: "[name].js",
