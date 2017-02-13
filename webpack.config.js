@@ -1,11 +1,18 @@
 
+const fs = require('fs');
+const path = require('path');
+
+const entries = {};
+
+const files = fs.readdirSync("src");
+for (const file of files) {
+  const noext = file.slice(0, - path.extname(file).length);
+  entries[noext] = path.resolve(path.join("src", file));
+}
+
 module.exports = {
   context: __dirname,
-  entry: {
-    "increment": "./src/increment.js",
-    "hello": "./src/hello.js",
-    "grid": "./src/grid.js",
-  },
+  entry: entries,
   output: {
     filename: "[name].js",
     path: __dirname + "/dist",
