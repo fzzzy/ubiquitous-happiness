@@ -20,7 +20,7 @@ class HelloStore {
     };
   }
 
-  store(state: string = "", action: GreetAction) {
+  store(state: string = "", action: GreetAction): string {
     if (action.type === GREET) {
       return action.name;
     } else {
