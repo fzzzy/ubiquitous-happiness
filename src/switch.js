@@ -87,4 +87,4 @@ function onChange(e) {
   console.log("ONCHANGE", e, e.target);
 }
 
-export default inject(<Switch label="label" name="name" onChange={onChange} onClick={onClick} />);
+export default inject(<Switch label="label" name="name" onChange={onChange} />);
