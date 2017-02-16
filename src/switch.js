@@ -41,7 +41,6 @@ class Switch extends React.Component {
     return (
       <div className={classes} onClick={
           (e) => {
-            console.log("ONCLICK", this.state.checked);
             e.preventDefault();
             this.setState({
               checked: !this.state.checked
@@ -87,10 +86,5 @@ Switch.defaultProps = {
 function onChange(e) {
   console.log("ONCHANGE", e, e.target);
 }
-
-function onClick(e) {
-  console.log("ONCLICK", e, e.target);
-}
-
 
 export default inject(<Switch label="label" name="name" onChange={onChange} onClick={onClick} />);
