@@ -15,7 +15,7 @@ module.exports = {
   entry: entries,
   output: {
     filename: "[name].js",
-    path: __dirname + "/dist",
+    path: path.join(__dirname, "dist"),
   },
   module: {
     rules: [

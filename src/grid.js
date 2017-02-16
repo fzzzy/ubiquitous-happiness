@@ -189,10 +189,6 @@ const MainContainer = connect(
   mapStateToProps, mapDispatchToProps
 )(Main);
 
-const provider = <Provider store={ createStore(grid) }>
+export default inject(<Provider store={ createStore(grid) }>
   <MainContainer />
-</Provider>;
-
-export default provider;
-
-inject(provider);
+</Provider>);

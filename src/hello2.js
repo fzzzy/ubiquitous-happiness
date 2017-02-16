@@ -77,10 +77,6 @@ const MainContainer = connect(
   hello.mapStateToProps.bind(hello), hello.mapDispatchToProps.bind(hello)
 )(Main);
 
-const provider = <Provider store={ createStore(hello.store.bind(hello)) }>
+export default inject(<Provider store={ createStore(hello.store.bind(hello)) }>
   <MainContainer />
-</Provider>;
-
-export default provider;
-
-inject(provider);
+</Provider>);
