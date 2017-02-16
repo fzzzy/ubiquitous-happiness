@@ -34,6 +34,20 @@ module.exports = {
             ].map(require.resolve),
           }
         }],
+      },
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader"
+        }, {
+          loader: "sass-loader"
+        }]
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-url-loader',
       }
     ]
   }
